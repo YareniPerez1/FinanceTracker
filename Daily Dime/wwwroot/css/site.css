@@ -1,0 +1,84 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #12161d;
+    color: #fff;
+    font-family: 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+}
+
+/*.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}*/
+
+/*.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}*/
+
+.form-group label,
+.form-floating label {
+    /*margin-bottom: 1.25rem;*/ /* about 20px spacing between fields */
+    margin-bottom: 0.25rem; /* tighter space below the label */
+    display: block;
+}
+
+/*.form-control {
+    height: 2.5rem;*/ /* Syncfusion's textbox height */
+    /*padding: 0.5rem 0.75rem;*/ /* vertical and horizontal padding */
+    /*font-size: 0.95rem;*/ /* slightly smaller for cleaner look */
+    /*border-radius: 6px;*/ /* soft edges like Syncfusion */
+/*}*/
+
+
+
+/* Global dark theme for all form controls */
+.form-control {
+    background-color: #1e1e1e; /* dark background */
+    color: #f5f5f5; /* light text */
+    border: 1px solid #444; /* subtle border */
+
+    border-radius: 6px;
+    padding: 0.375rem 0.75rem; /* Tighter padding */
+    height: 2rem; /* ~32px height */
+    font-size: 0.9rem;
+    border-radius: 6px; /* soft edges like Syncfusion */
+}
+
+    /*.form-control::placeholder {
+        color: #aaa;*/ /* lighter placeholder text */
+    /*}*/
+
+    .form-control:focus {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border-color: #666;
+        box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.1);
+    }
+
+/*
+for create category view*/
+.control-label {
+    /*font-size: 0.875rem;*/ /* Small text */
+    font-size: 0.75rem; /* smaller size — ~12px */
+    color: #ccc; /* Lighter color for dark theme */
+    margin-bottom: 0.25rem; /* Tight spacing above input */
+}
+

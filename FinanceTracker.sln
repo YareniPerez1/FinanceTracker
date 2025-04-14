@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTDataAccess", "FTDataAccess\FTDataAccess.csproj", "{D0F2F481-2577-4740-9D13-5EAA636E1A79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daily Dime", "Daily Dime\Daily Dime.csproj", "{DC07E4C3-65DE-44FA-AD50-FD976B790318}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0F2F481-2577-4740-9D13-5EAA636E1A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0F2F481-2577-4740-9D13-5EAA636E1A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0F2F481-2577-4740-9D13-5EAA636E1A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0F2F481-2577-4740-9D13-5EAA636E1A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC07E4C3-65DE-44FA-AD50-FD976B790318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC07E4C3-65DE-44FA-AD50-FD976B790318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC07E4C3-65DE-44FA-AD50-FD976B790318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC07E4C3-65DE-44FA-AD50-FD976B790318}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
