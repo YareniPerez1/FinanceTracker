@@ -19,6 +19,13 @@ namespace FTDataAccess.Repository
             _context = context;
         }
 
+        public async Task AddAsync(Category category, string userId) // Accept userId as a parameter
+        {
+            category.UserId = userId; // Set the UserId of the category
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
             return await _context.Categories.ToListAsync();
@@ -29,17 +36,40 @@ namespace FTDataAccess.Repository
             return await _context.Categories.FirstOrDefaultAsync(c => c.CategoryId == id);
         }
 
-        public async Task AddAsync(Category category)
-        {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
-        }
+       
 
         public async Task UpdateAsync(Category category)
         {
-            _context.Categories.Update(category);
+            // Detach any existing entity with the same CategoryId to avoid tracking issues
+            var existingCategory = await _context.Categories
+                .AsNoTracking() // Prevents tracking while fetching the entity
+                .FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
+
+            if (existingCategory == null)
+            {
+                throw new InvalidOperationException("Category not found.");
+            }
+
+            // Detach any previously tracked instance of the same Category
+            var trackedCategory = _context.ChangeTracker.Entries<Category>()
+                                           .FirstOrDefault(c => c.Entity.CategoryId == category.CategoryId);
+            if (trackedCategory != null)
+            {
+                trackedCategory.State = EntityState.Detached;
+            }
+
+            // Attach the new instance of the Category
+            _context.Attach(category);
+
+            // Mark the entity as modified
+            _context.Entry(category).State = EntityState.Modified;
+
+            // Save changes to the database
             await _context.SaveChangesAsync();
         }
+
+
+
 
         public async Task DeleteAsync(int id)
         {
@@ -55,6 +85,6 @@ namespace FTDataAccess.Repository
         {
             return await _context.Categories.AnyAsync(c => c.CategoryId == id);
         }
-
     }
+
 }

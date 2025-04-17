@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,5 +27,13 @@ namespace FTDataAccess.Models
         public string? Note { get; set; }
 
         public DateTime Date { get; set; } = DateTime.Now;
+
+        // Foreign key to IdentityUser
+        [Required]
+      
+        public string UserId { get; set; }
+
+        // Navigation property (optional)
+        public IdentityUser User { get; set; }
     }
 }
