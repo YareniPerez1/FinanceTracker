@@ -26,11 +26,17 @@ namespace FTDataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync()
-        {
-            return await _context.Categories.ToListAsync();
-        }
+        //public async Task<IEnumerable<Category>> GetAllAsync()
+        //{
+        //    return await _context.Categories.ToListAsync();
+        //}
 
+        public async Task<IEnumerable<Category>> GetAllAsync(string userId)
+        {
+            return await _context.Categories
+                                 .Where(c => c.UserId == userId)
+                                 .ToListAsync();
+        }
         public async Task<Category?> GetByIdAsync(int id)
         {
             return await _context.Categories.FirstOrDefaultAsync(c => c.CategoryId == id);

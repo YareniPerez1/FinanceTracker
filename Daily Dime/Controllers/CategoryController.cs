@@ -24,11 +24,18 @@ namespace Daily_Dime.Controllers
         }
 
         // GET: Category
+        //public async Task<IActionResult> Index()
+        //{
+        //    var categories = await _categoryRepo.GetAllAsync();
+        //    return View(categories);
+        //}
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryRepo.GetAllAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var categories = await _categoryRepo.GetAllAsync(userId);
             return View(categories);
         }
+
 
         // GET: Category/Details/5
         public async Task<IActionResult> Details(int? id)

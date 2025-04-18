@@ -19,20 +19,13 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: #212b36;
+    background-color: #1a222b;
+    
     /*#12161d;*/
     color: #fff;
     font-family: 'Segoe UI', 'Roboto', 'Inter', sans-serif;
 }
 
-/*.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
-}*/
-
-/*.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
-}*/
 
 .form-group label,
 .form-floating label {
@@ -41,18 +34,13 @@ body {
     display: block;
 }
 
-/*.form-control {
-    height: 2.5rem;*/ /* Syncfusion's textbox height */
-    /*padding: 0.5rem 0.75rem;*/ /* vertical and horizontal padding */
-    /*font-size: 0.95rem;*/ /* slightly smaller for cleaner look */
-    /*border-radius: 6px;*/ /* soft edges like Syncfusion */
-/*}*/
 
 
 
 /* Global dark theme for all form controls */
 .form-control {
-    background-color: #212b36; /* dark background */
+    background-color: #1a222b;
+    /*#212b36; *//* dark background */
     color: #fff; /* light text */
     border: 1px solid #444; /* subtle border */
 
@@ -84,42 +72,7 @@ for create category view*/
 }
 
 
-/*CSS for expense vs income type input category*/
-/* Inside site.css */
-/*.btn-group input[type="radio"] {
-    display: none;
-}
 
-.btn-group {
-    display: inline-flex;
-    border: 1px solid black;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.btn-group-option {
-    padding: 4px 12px;*/ /* Slimmer buttons */
-    /*background-color: black;
-    color: white;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s, color 0.3s;
-    border-right: 1px solid black;
-    user-select: none;
-}
-
-    .btn-group-option:last-of-type {
-        border-right: none;
-    }
-
-.btn-group input[type="radio"]:checked + .btn-group-option {
-    background-color: white;
-    color: black;
-}
-
-.btn-group-option:hover {
-    opacity: 0.9;
-}*/
 .full-width {
     width: 100%;
 }
@@ -165,3 +118,42 @@ for create category view*/
 .btn-group-option:hover {
     opacity: 0.9;
 }
+
+
+/*Widget css*/
+
+.widget {
+    border-radius: 1rem;
+    background-color: #212b36;
+}
+
+
+
+
+table.clean-header thead th {
+    background-color: #212b36;
+    color: #fff;
+    border-bottom: 1px solid #444;  dark line under header 
+}
+
+table.clean-header tbody tr {
+    background-color: #212b36;
+    color: #fff;
+    border-bottom: 1px solid #444; /* dark horizontal lines */
+}
+
+table.clean-header td {
+    border: none;
+}
+.clean-header tbody tr:hover td {
+    background-color: #2c3e50;
+}
+
+.clean-header tbody td {
+    background-color: #212b36;
+    color: #fff;
+    border-top: 1px solid #2c3e50;
+    /* horizontal lines between rows */
+}
+
+
