@@ -29,5 +29,15 @@ namespace FTDataAccess.Models
 
         [ForeignKey("UserId")]
         public IdentityUser? User { get; set; }
+
+
+        [NotMapped]
+        public string TitleAndIcon
+        {
+            get
+            {
+                return this.Icon + " " + this.Title;
+            }
+        }
     }
 }

@@ -10,6 +10,9 @@ using FTDataAccess.Models;
 using FTDataAccess.Repository;
 using FTDataAccess.Interface;
 using System.Security.Claims;
+using Syncfusion.EJ2.Navigations;
+using Daily_Dime.Models;
+
 
 namespace Daily_Dime.Controllers
 {
@@ -24,31 +27,55 @@ namespace Daily_Dime.Controllers
         }
 
         // GET: Category
+
         //public async Task<IActionResult> Index()
         //{
-        //    var categories = await _categoryRepo.GetAllAsync();
+        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var categories = await _categoryRepo.GetAllAsync(userId);
         //    return View(categories);
         //}
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var categories = await _categoryRepo.GetAllAsync(userId);
-            return View(categories);
+            var pageSize = 5; // Items per page
+
+            var allCategories = await _categoryRepo.GetAllAsync(userId);
+            var totalItems = allCategories.Count();
+
+            var categories = allCategories
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var viewModel = new PagedCategoryViewModel
+            {
+                Categories = categories,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
+            };
+
+     
+
+            return View(viewModel);
         }
+
+
+
+
 
 
         // GET: Category/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-                return NotFound();
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null)
+        //        return NotFound();
 
-            var category = await _categoryRepo.GetByIdAsync(id.Value);
-            if (category == null)
-                return NotFound();
+        //    var category = await _categoryRepo.GetByIdAsync(id.Value);
+        //    if (category == null)
+        //        return NotFound();
 
-            return View(category);
-        }
+        //    return View(category);
+        //}
 
         // GET: Category/Create
         //public IActionResult Create()
@@ -68,6 +95,8 @@ namespace Daily_Dime.Controllers
             var category = await _categoryRepo.GetByIdAsync(id.Value);
             if (category == null)
                 return NotFound();
+
+          
 
             return View(category);
         }
@@ -232,27 +261,33 @@ namespace Daily_Dime.Controllers
 
 
         // GET: Category/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-                return NotFound();
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //        return NotFound();
 
-            var category = await _categoryRepo.GetByIdAsync(id.Value);
-            if (category == null)
-                return NotFound();
+        //    var category = await _categoryRepo.GetByIdAsync(id.Value);
+        //    if (category == null)
+        //        return NotFound();
 
-            return View(category);
-        }
+        //    return View(category);
+        //}
 
         // POST: Category/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await _categoryRepo.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
-    }
+
+
+
+
+
+  
+}
 
 
 }

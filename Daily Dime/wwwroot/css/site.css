@@ -1,6 +1,6 @@
-html {
+/*html {
   font-size: 14px;
-}
+}*/
 
 @media (min-width: 768px) {
   html {
@@ -15,6 +15,10 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  font-family: "Inter";
+}
+*:not(.fa-solid):not(.fa) {
+    font-family: "Inter";
 }
 
 body {
@@ -157,3 +161,57 @@ table.clean-header td {
 }
 
 
+/*css for page buttons and icon buttons----------*/
+
+    /* Non-active pagination buttons */
+.pagination .page-item .page-link {
+    color: white; /* Black text for non-active page */
+    background-color: #212b36; /* Dark background for non-active pages */
+    border-color: #212b36; /* Dark border for non-active pages */
+}
+
+    /* Non-active button when hovered */
+    .pagination .page-item .page-link:hover {
+        background-color: #495057; /* Darker hover effect */
+        border-color: #495057; /* Darker hover border */
+    }
+
+/* Custom icon color */
+.fa-pencil-alt {
+    color: #28a745; /* Green color for Edit */
+}
+
+.fa-trash-alt {
+    color: #dc3545; /* Red color for Delete */
+}
+
+.fa-info-circle {
+    color: #17a2b8; /* Blue color for Details */
+}
+
+
+
+/*end------------------*/
+
+/*Breadcrumb css*/
+
+
+
+.breadcrumb {
+    background-color: transparent;
+    --bs-breadcrumb-divider-color: white;
+}
+
+.breadcrumb-item a,
+.breadcrumb-item.active {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+    /*.breadcrumb-item a:hover,
+    .breadcrumb-item.active:hover {
+        color: #0d6;*/ /* Bootstrap's primary blue */
+        /*text-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    
+}*/
