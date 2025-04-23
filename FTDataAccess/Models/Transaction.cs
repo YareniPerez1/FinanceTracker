@@ -15,10 +15,10 @@ namespace FTDataAccess.Models
         public int TransactionId { get; set; }
 
         //fk
+        [Display(Name = "Category")]
+        public int CategoryId { get; set; }
 
-        public int CatgoryId { get; set; }
-
-        public Category Catgory { get; set; }
+        public Category Category { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
@@ -35,5 +35,6 @@ namespace FTDataAccess.Models
 
         // Navigation property (optional)
         public IdentityUser User { get; set; }
+       // public int CategoryId { get; set; }
     }
 }
