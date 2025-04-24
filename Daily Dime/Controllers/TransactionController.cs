@@ -29,6 +29,11 @@ namespace Daily_Dime.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var transactions = await _transactionRepository.GetAllAsync(userId);
+            //    .Include(t => t.Category)  // Include the Category navigation property
+            //.ToListAsync();
+
+            // Get all transactions as a List
+
 
             var pageSize = 5; // Items per page
 
@@ -50,49 +55,7 @@ namespace Daily_Dime.Controllers
             return View(viewModel);
         }
 
-        // GET: Transaction/Create
-        //public IActionResult AddOrEdit()
-        //{
-        //    ViewData["CatgoryId"] = new SelectList(_context.Categories, "CategoryId", "Icon");
-        //    return View();
-        //}
-
-        //// POST: Transaction/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create(Transaction transaction)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //        await _transactionRepository.AddAsync(transaction, userId);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["CatgoryId"] = new SelectList(_context.Categories, "CategoryId", "Icon", transaction.CatgoryId);
-        //    return View(transaction);
-        //  }
-
-        //public async Task<IActionResult> AddOrEdit(int? id)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        //    // Populate categories for the dropdown
-        //    ViewData["CatgoryId"] = new SelectList(_context.Categories, "CategoryId", "Icon");
-
-
-        //    if (id == null || id == 0)
-        //    {
-        //        // Creating a new transaction
-        //        return View(new Transaction());
-        //    }
-
-        //    // Editing existing transaction
-        //    var transaction = await _transactionRepository.GetByIdAsync(id.Value);
-        //    if (transaction == null || transaction.UserId != userId)
-        //        return NotFound();
-
-        //    return View(transaction);
-        //}
+      
 
         public async Task<IActionResult> AddOrEdit(int? id)
         {
@@ -104,7 +67,7 @@ namespace Daily_Dime.Controllers
                 .ToListAsync();
 
             // Populate the dropdown with user-specific categories
-            ViewData["CategoryId"] = new SelectList(userCategories, "CategoryId", "Title");
+            ViewData["CategoryId"] = new SelectList(userCategories, "CategoryId", "TitleAndIcon");
 
             if (id == null || id == 0)
             {
@@ -124,46 +87,6 @@ namespace Daily_Dime.Controllers
         }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CatgoryId,Amount,Note,Date")] Transaction transaction)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        //    // Remove validation for navigation properties if necessary
-        //    ModelState.Remove("User");
-        //    ModelState.Remove("UserId");
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        ViewData["CatgoryId"] = new SelectList(_context.Categories, "CategoryId", "Icon", transaction.CatgoryId);
-        //        return View(transaction);
-        //    }
-
-        //    if (transaction.TransactionId == 0)
-        //    {
-        //        // Creating new transaction
-        //        transaction.UserId = userId;
-        //        await _transactionRepository.AddAsync(transaction, userId);
-        //    }
-        //    else
-        //    {
-        //        // Editing existing transaction
-        //        var existingTransaction = await _transactionRepository.GetByIdAsync(transaction.TransactionId);
-        //        if (existingTransaction == null || existingTransaction.UserId != userId)
-        //            return NotFound();
-
-        //        // Update fields
-        //        existingTransaction.CatgoryId = transaction.CatgoryId;
-        //        existingTransaction.Amount = transaction.Amount;
-        //        existingTransaction.Note = transaction.Note;
-        //        existingTransaction.Date = transaction.Date;
-
-        //        await _transactionRepository.UpdateAsync(existingTransaction);
-        //    }
-
-        //    return RedirectToAction(nameof(Index));
-        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
@@ -173,12 +96,16 @@ namespace Daily_Dime.Controllers
             // Remove validation for navigation properties if necessary
             ModelState.Remove("User");
             ModelState.Remove("UserId");
-           // var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ModelState.Remove("Category");
+            // var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             //if (!ModelState.IsValid)
             //{
             //    var userCategories = await _context.Categories
             //        .Where(c => c.UserId == userId)
             //        .ToListAsync();
+            //    // Rehydrate the selected Category so FormattedAmount won't break
+            //    transaction.Category = userCategories.FirstOrDefault(c => c.CategoryId == transaction.CategoryId);
+
             //    ViewData["CategoryId"] = new SelectList(userCategories, "CategoryId", "Title", transaction.CategoryId);
             //    return View(transaction);
             //}
@@ -188,6 +115,13 @@ namespace Daily_Dime.Controllers
                 {
                     Console.WriteLine($"Key: {state.Key}, Errors: {string.Join(", ", state.Value.Errors.Select(e => e.ErrorMessage))}");
                 }
+
+                var userCategories = await _context.Categories
+      .Where(c => c.UserId == userId)
+      .ToListAsync();
+                transaction.Category = userCategories.FirstOrDefault(c => c.CategoryId == transaction.CategoryId);
+                ViewData["CategoryId"] = new SelectList(userCategories, "CategoryId", "Title", transaction.CategoryId);
+                return View(transaction);
             }
 
             if (transaction.TransactionId == 0)
@@ -216,44 +150,6 @@ namespace Daily_Dime.Controllers
         }
 
 
-        //// GET: Transaction/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var transaction = await _transactionRepository.GetByIdAsync(id.Value);
-        //    if (transaction == null || transaction.UserId != User.FindFirstValue(ClaimTypes.NameIdentifier))
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    ViewData["CatgoryId"] = new SelectList(_context.Categories, "CategoryId", "Icon", transaction.CatgoryId);
-        //    return View(transaction);
-        //}
-
-        //// POST: Transaction/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, Transaction transaction)
-        //{
-        //    if (id != transaction.TransactionId)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //        transaction.UserId = userId;
-        //        await _transactionRepository.UpdateAsync(transaction);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["CatgoryId"] = new SelectList(_context.Categories, "CategoryId", "Icon", transaction.CatgoryId);
-        //    return View(transaction);
-        //}
 
 
 

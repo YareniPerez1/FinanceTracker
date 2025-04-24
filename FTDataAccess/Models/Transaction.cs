@@ -35,6 +35,15 @@ namespace FTDataAccess.Models
 
         // Navigation property (optional)
         public IdentityUser User { get; set; }
-       // public int CategoryId { get; set; }
+        // public int CategoryId { get; set; }
+
+        [NotMapped]
+        public string? FormattedAmount
+        {
+            get
+            {
+                return ((Category == null || Category.Type == "Expense") ? "- " : "+ ") + Amount.ToString("C0");
+            }
+        }
     }
 }

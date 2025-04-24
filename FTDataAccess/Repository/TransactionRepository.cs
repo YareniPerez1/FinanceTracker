@@ -29,6 +29,19 @@ namespace FTDataAccess.Repository
                 .ToListAsync();
         }
 
+
+        //public async Task<List<Transaction>> GetAllAsync(string userId)
+        //{
+        //    return await _context.Transactions
+        //        .Include(t => t.Category)
+        //        .Include(t => t.User) // If you need to include the User too
+        //        .Where(t => t.UserId == userId)
+        //        .ToListAsync();
+        //}
+
+
+
+
         public async Task<Transaction> GetByIdAsync(int id)
         {
             return await _context.Transactions

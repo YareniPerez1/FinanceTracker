@@ -44,9 +44,9 @@
                         <tr>
                            @*  <td>@Html.DisplayFor(modelItem => item.Category.Title)</td> *@
 
-                            <td>@item.Category?.Title</td>
-                            <td>@Html.DisplayFor(modelItem => item.Amount)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;" title="@item.Category?.Title">@Html.DisplayFor(modelItem => item.Category.TitleAndIcon)</td>
+                            <td>@Html.DisplayFor(modelItem => item.FormattedAmount)</td>
+                            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" title="@item.Note">@Html.DisplayFor(modelItem => item.Note)</td>
                             <td>@item.Date.ToShortDateString()</td>
                            @*  <td>@Html.DisplayFor(modelItem => item.Date.ToShortDateString())</td> *@
                             <td>

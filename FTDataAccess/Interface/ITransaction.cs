@@ -17,6 +17,7 @@ namespace FTDataAccess.Interface
         //Task DeleteAsync(int id);
 
         Task<IEnumerable<Transaction>> GetAllAsync(string UserId);
+       // Task<List<Transaction>> GetAllAsync(string UserId);
         Task<Transaction?> GetByIdAsync(int id);
         Task AddAsync(Transaction transactiony, string userId); // Add userId parameter
         Task UpdateAsync(Transaction transaction);
