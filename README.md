@@ -1,3 +1,8 @@
+!Important Information!
+
+An account must be created in order to add, edit, and delete categories and transactions.
+
+
 # Finance Tracker Important Resources
 
 --------------------------------------
