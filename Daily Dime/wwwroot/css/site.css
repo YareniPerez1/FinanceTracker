@@ -215,3 +215,104 @@ table.clean-header td {
         /*text-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
     
 }*/
+
+
+/* Sidebar Base */
+.sidebar-fixed {
+    background-color: #1a222b; /* Dark background for sidebar */
+    color: #fff; /* White text */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    z-index: 1030;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    transition: width 0.3s;
+    border: none;
+}
+
+/* Header inside sidebar */
+.sidebar-header {
+    border-bottom: 1px solid #ddd;
+    border: none;
+}
+
+/* Main content shift */
+.main-content {
+    margin-left: 290px;
+    transition: margin-left 0.3s;
+}
+
+/* Collapsed Sidebar */
+.sidebar-collapsed {
+    width: 80px; /* Smaller width */
+    border: none
+}
+
+/* Collapsed Main Content */
+.main-content-collapsed {
+    margin-left: 80px;
+    border: none
+}
+
+/* When sidebar collapsed, hide text */
+.sidebar-collapsed .link-text {
+    display: none;
+    border: none
+}
+
+.sidebar-fixed .nav-link {
+    color: #fff; /* Sidebar links white */
+    border: none
+}
+/* Optional: Center icons when collapsed */
+.sidebar-collapsed .nav-link {
+    justify-content: center;
+    border: none
+}
+
+/* Toggle button style */
+#sidebarToggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none
+}
+
+/* Sidebar Section Labels */
+.sidebar-label {
+    font-size: 14px;
+    font-weight: bold;
+    /*color: #6c757d;*/ /* Adjust the color to match your theme */
+    color: var(--bs-success); /* Bootstrap's success color for labels */
+    padding: 10px 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid #dee2e6; /* Optional, adds a line beneath the label */
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+
+
+/* Optional: Add a little padding when collapsed to make the icon more centered */
+.sidebar.collapsed .nav-link i {
+    padding-left: 0;
+    border: none
+}
+
+.sidebar-fixed ul,
+.sidebar-fixed li {
+    border: none !important; /* No borders around nav list or items */
+}
+
+
+
+.sidebar-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Dime</title>
     <script type="importmap"></script>
-    <link rel="icon" type="image/x-icon" href="~/DailyDime.ico" />
+    <link rel="icon" type="image/x-icon" href="~/logo.ico" />
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <!-- Syncfusion ASP.NET Core controls scripts -->
@@ -21,7 +21,205 @@
     <script src="https://cdn.syncfusion.com/ej2/29.1.33/dist/ej2.min.js"></script>
 
 </head>
+
 <body>
+    <div>
+        @await Html.PartialAsync("_SideBar")
+
+        <div class="main-content">
+            <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3 navbar-shifted">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Daily_Dime</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container mt-3">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar-fixed');
+            const mainContent = document.querySelector('.main-content');
+            const sidebarLabels = document.querySelectorAll('.sidebar-label'); // <-- Select all labels
+
+            toggleButton.addEventListener('click', function () {
+                sidebar.classList.toggle('sidebar-collapsed');
+                mainContent.classList.toggle('main-content-collapsed');
+
+                // Hide or show the labels based on sidebar state
+                sidebarLabels.forEach(label => {
+                    if (sidebar.classList.contains('sidebar-collapsed')) {
+                        label.style.display = 'none'; // Hide labels
+                    } else {
+                        label.style.display = 'block'; // Show labels
+                    }
+                });
+
+                // Change the toggle button symbol
+                if (sidebar.classList.contains('sidebar-collapsed')) {
+                    toggleButton.innerHTML = '&raquo;'; // >>
+                } else {
+                    toggleButton.innerHTML = '&laquo;'; // <<
+                }
+            });
+        });
+    </script>
+
+  
+
+    
+   @* 
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar-fixed');
+            const mainContent = document.querySelector('.main-content');
+
+            toggleButton.addEventListener('click', function () {
+                sidebar.classList.toggle('sidebar-collapsed');
+                mainContent.classList.toggle('main-content-collapsed');
+
+                // Optional: Change the toggle button text
+                if (sidebar.classList.contains('sidebar-collapsed')) {
+                    toggleButton.innerHTML = '&raquo;'; // >>
+                } else {
+                    toggleButton.innerHTML = '&laquo;'; // <<
+                }
+            });
+        });
+    </script>  *@
+
+ 
+</body>
+
+@* <body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Daily_Dime</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @* Sidebar (now fixed) 
+    <div class="sidebar-fixed">
+        @await Html.PartialAsync("_SideBar")
+    </div>
+
+    @* Main content shifts to the right 
+    <div class="main-content">
+        <div class="container mt-5">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    @* Scripts 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+ *@
+
+@* <body>
+
+    <div class="d-flex">
+        @await Html.PartialAsync("_SideBar")
+
+        <div class="flex-grow-1" style="margin-left:290px;">
+            <!-- Main Content -->
+
+            <header>
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Daily_Dime</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                </li>
+                            </ul>
+                            <partial name="_LoginPartial" />
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="container mt-5">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+
+        </div> <!-- End Main Content -->
+    </div> <!-- End d-flex -->
+
+    @* Scripts 
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body> *@ 
+@* <body>
+
+    <div class="d-flex">
+        @await Html.PartialAsync("_SideBar")
+
+        @* <div class="dock-target">
+            @RenderBody()
+        </div> 
+        <div class="flex-grow-1" style="margin-left:290px;">
+            <!-- Main Content -->
+
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -66,7 +264,7 @@
                                         }
                                     </div>
                                 </div>
-                                @* breadcrumb *@
+                                @* breadcrumb 
                               
                             </div>
                         </div>
@@ -82,12 +280,12 @@
         <div class="container">
             &copy; 2025 - Daily_Dime - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer> *@
+    </footer> 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <!-- Syncfusion ASP.NET Core Script Manager -->
     <ejs-scripts></ejs-scripts>
-</body>
+</body> *@
 </html>

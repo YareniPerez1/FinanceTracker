@@ -1,0 +1,176 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@* Views/Shared/_SideBar.cshtml *@
+@* <div id="sidebar" class="sidebar d-flex flex-column">
+    <div class="logo-wrapper d-flex align-items-center justify-content-between p-3">
+        <img src="~/logo.png" alt="Logo" class="logo" />
+        <i id="sidebar-toggler" class="fa-solid fa-bars"></i>
+    </div>
+
+    <div class="profile-wrapper d-flex align-items-center p-3">
+        <img src="~/profile.jpg" alt="Profile" class="profile-pic rounded-circle" width="40" height="40">
+        <div class="ps-3">
+            <h6 class="mb-0">Wallet App</h6>
+            <small class="text-muted">Ashton Cox</small>
+        </div>
+    </div>
+
+    <hr class="my-2">
+
+    <ul class="nav flex-column menu">
+        <li class="nav-item text-uppercase small text-muted px-3">General</li>
+        <li class="nav-item">
+            <a href="/" class="nav-link">
+                <i class="fa-solid fa-box me-2"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Category" class="nav-link">
+                <i class="fa-solid fa-folder-closed me-2"></i> Categories
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Transaction" class="nav-link">
+                <i class="fa-solid fa-arrow-right-arrow-left me-2"></i> Transactions
+            </a>
+        </li>
+
+        <li class="nav-item text-uppercase small text-muted px-3 mt-3">Extras</li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-chart-simple me-2"></i> Reports
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="fa-solid fa-gear me-2"></i> Settings
+            </a>
+        </li>
+    </ul>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggler = document.getElementById('sidebar-toggler');
+
+            toggler.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+            });
+        });
+    </script>
+}
+ *@
+
+
+
+@* <div class="sidebar-fixed" id="sidebar">
+    <div class="logo-wrapper p-3 text-center">
+        <img src="~/logo.png" class="img-fluid" style="max-height: 50px;" />
+    </div>
+
+    <div class="profile-wrapper text-center p-3">
+        <img class="profile-pic rounded-circle" src="~/profile.jpg" style="width: 50px; height: 50px;" />
+        <h6 class="mt-2">Wallet App</h6>
+        <small class="text-muted">@User.Identity?.Name</small>
+    </div>
+
+    <ul class="nav flex-column p-2">
+        <li class="nav-item mb-2">
+            <a class="nav-link text-dark" href="/"><i class="fa-solid fa-box"></i> Dashboard</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-dark" href="/Category"><i class="fa-solid fa-folder-closed"></i> Categories</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-dark" href="/Transaction"><i class="fa-solid fa-arrow-right-arrow-left"></i> Transactions</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-dark" href="#"><i class="fa-solid fa-chart-simple"></i> Reports</a>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link text-dark" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+        </li>
+    </ul>
+
+    <div class="text-center p-2">
+        <button id="sidebarToggle" class="btn btn-outline-secondary btn-sm w-100">Toggle</button>
+    </div>
+</div>
+ *@
+
+<div class="sidebar-fixed d-flex flex-column">
+    <div class="sidebar-header d-flex justify-content-between align-items-center p-3">
+        <img src="~/logo.ico" alt="Logo" class="sidebar-logo">
+
+        <button id="sidebarToggle" class="btn btn-sm btn-outline-secondary">
+            &laquo;
+        </button>
+    </div>
+
+    <ul class="nav flex-column" id="sidebarMenu">
+        <li class="nav-item">
+            <div class="sidebar-label">General</div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/">
+                <i class="fa-solid fa-house"></i>
+                <span class="link-text ms-2">Dashboard</span>
+            </a>
+        </li>
+    @*     <li class="nav-item">
+            <form method="post" asp-controller="Account" asp-action="Logout" class="p-0 m-0">
+                <button type="submit" class="nav-link d-flex align-items-center w-100 text-start" style="background: none; border: none; color: inherit; text-decoration: none;">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="link-text ms-2">Logout</span>
+                </button>
+            </form>
+        </li> *@
+
+      
+
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/Category">
+                <i class="fa-solid fa-folder-closed"></i>
+                <span class="link-text ms-2">Categories</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center" href="/Transaction">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                <span class="link-text ms-2">Transactions</span>
+            </a>
+        </li>
+        <!-- Add more items here -->
+        <li class="nav-item">
+            <div class="sidebar-label">Extras</div>
+        </li>
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center " href="#">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span class="link-text ms-2">Reports</span>
+            </a>
+        </li>
+
+        <li class="nav-item mb-2">
+            <a class="nav-link d-flex align-items-center" href="#">
+                <i class="fa-solid fa-gear"></i>
+                <span class="link-text ms-2">Settings</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link d-flex align-items-center w-100 text-start btn btn-link text-white" style="background: none; border: none; text-decoration: none;">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="link-text ms-2">Logout</span>
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
+
