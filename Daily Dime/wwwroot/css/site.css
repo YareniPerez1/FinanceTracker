@@ -316,3 +316,21 @@ table.clean-header td {
     height: 40px;
     object-fit: contain;
 }
+
+
+
+.widget.chart canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.widget.chart {
+    background-color: #1a222b;
+    border-radius: 16px;
+    color: white;
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* turns icon white */
+}
