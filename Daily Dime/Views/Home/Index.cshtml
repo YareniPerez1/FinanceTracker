@@ -1,8 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    
+    ViewData["HideSidebar"] = true;
+
 }
 
-<div class="text-center">
+@* <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
@@ -11,4 +14,89 @@
 </a>
 <a asp-controller="Transaction" asp-action="Index" class="btn btn-primary">
  View and add transactions
-</a>
+</a> *@
+@* <div class="widget text-white">
+    <div class="container px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <!-- Bigger image with more rounded corners -->
+            <div class="col-12 col-lg-6 text-center text-lg-end">
+                <img src="~/CoverImage.jpeg"
+                     class="img-fluid shadow-lg"
+                     style="width: 100%; max-width: 800px; border-radius: 3rem; object-fit: cover;"
+                     alt="Cover Image" />
+            </div>
+
+            <!-- Text and button section -->
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3 text-white">Make every Dime count</h1>
+                <p class="lead text-white">Track your spending with custom categories and clear insights.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 rounded-pill">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+
+
+<div class="widget  text-white">
+    <div class="container px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <!-- Image section shifted left -->
+            <div class="col-12 col-lg-6 text-center text-lg-end">
+                <img src="~/CoverImage.jpeg"
+                     class="img-fluid shadow-lg"
+                     style="max-width: 550px; border-radius: 2rem; margin-right: 30px;"
+                     alt="Cover Image" />
+            </div>
+
+            <!-- Text and button section -->
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold lh-1 mb-4 text-white">Make every <span style="color: #7ed957;">Dime</span> count</h1>
+                <p class="lead fs-4 text-white mb-4">
+                    Track your spending with custom categories and clear insights.
+                </p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a asp-area="Identity" asp-page="/Account/Register"
+                       class="btn btn-primary px-4 rounded-pill d-flex align-items-center justify-content-center"
+                       style="height: 60px; font-size: 1.25rem; background-color: #7ed957;">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* 
+<div class="container px-4 py-5" id="custom-cards"> 
+    <h2 class="pb-2 border-bottom">Custom cards</h2> 
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col"> <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');"> 
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3> 
+                <ul class="d-flex list-unstyled mt-auto">
+                    <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"> </li> 
+                    <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Location"><use xlink:href="#geo-fill"></use></svg> <small>Earth</small> </li> 
+                    <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Duration"><use xlink:href="#calendar3"></use></svg> <small>3d</small> </li> </ul> </div> </div> </div>
+                    <div class="col"> <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');"> 
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
+                            <ul class="d-flex list-unstyled mt-auto">
+                                <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"> </li> 
+                                <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Location"><use xlink:href="#geo-fill"></use></svg> <small>Pakistan</small> </li> 
+                                <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Duration"><use xlink:href="#calendar3"></use></svg> <small>4d</small> </li> </ul> </div> </div> </div> 
+                                <div class="col"> <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');"> 
+                                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3> 
+                                        <ul class="d-flex list-unstyled mt-auto"> <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"> </li> 
+                                            <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Location"><use xlink:href="#geo-fill"></use></svg> <small>California</small> </li> 
+                                            <li class="d-flex align-items-center">
+    <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Duration"><use xlink:href="#calendar3"></use></svg> <small>5d</small> </li> </ul> </div> </div> </div> </div> </div> *@
+
+

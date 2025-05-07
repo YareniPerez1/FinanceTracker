@@ -15,6 +15,10 @@ namespace Daily_Dime.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Dashboard"); 
+            }
             return View();
         }
 

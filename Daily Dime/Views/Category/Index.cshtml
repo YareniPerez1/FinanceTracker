@@ -8,110 +8,42 @@
     ViewData["PageActionUrl"] = "/Category/AddOrEdit";
 
 }
+@* 
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">@ViewData["PageTitle"]</h2>
+    <a href="@ViewData["PageActionUrl"]" class="btn btn-success">
+        @ViewData["PageActionText"]
+    </a>
+</div>
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="@Url.Action("Index", "Dashboard")"><i class="fa-solid fa-house"></i></a></li>
         <li class="breadcrumb-item active" aria-current="page">Categories</li>
     </ol>
 </nav>
-@* <h1>Index</h1>
-
-<p>
-    <a asp-action="AddOrEdit">Create New</a>
-</p> *@
-
-@* Works but icon not the same width as rows *@
-
-@* < div class="row"> *@
-    <!-- Left: Table -->
- @*    <div class="col-md-7">
-        <table class="table clean-header table-borderless w-100" style="table-layout: fixed;">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Title)</th> *@
-                 @*    <th>@Html.DisplayNameFor(model => model.Icon)</th> *@
-                  @*   <th>@Html.DisplayNameFor(model => model.Type)</th>
-                    <th style="width: 200px;">Actions</th>
-                  @*   <th></th> *@
-           @*      </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.TitleAndIcon)</td>
-                    @*     <td>@Html.DisplayFor(modelItem => item.Icon)</td> *@
-                      @*   <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                        <td>
-                            <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div> *@ 
-
-    <!-- Right: Icon Block -->
-   @*  <div class="col-md-5">
-        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: #212b36; height: 100%;">
-          @*   <i class="fa-solid fa-shapes fa-2xl text-white"></i> *@
-        @*     <i class="fa-solid fa-coins fa-2xl text-white"></i>
-        </div>
-    </div>
-</div>  
- *@
-@* work end here  ---------------------------------------- *@
-
-   @*   <div class="row d-flex align-items-stretch">
-    <!-- Left: Table -->
-    <div class="col-md-7 d-flex">
-        <div class="w-100">
-            <table class="table clean-header table-borderless w-100 h-100" style="table-layout: fixed;">
-                <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Title)</th>
-                        <th>@Html.DisplayNameFor(model => model.Type)</th>
-                        <th style="width: 200px;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                            <tr>
-                                <td>@Html.DisplayFor(modelItem => item.TitleAndIcon)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                                <td>
-                                    <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-                                </td>
-                            </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Right: Icon Block -->
-    <div class="col-md-5 d-flex">
-        <div class="widget w-100 d-flex justify-content-center align-items-center" style="background-color: #212b36;">
-            <i class="fa-solid fa-coins fa-2xl text-white"></i>
-        </div>
-    </div>
-</div>
  *@
 
-@*   -----------------------------------   end here ------------------------------------------ *@
-
-                          @*   @model PagedCategoryListViewModel *@
 
 
 
-<div class="row d-flex align-items-stretch">
-    <!-- Left: Table -->
+<div class="row d-flex align-items-stretch mb-4 ">
+    <div class="col-md-7 d-flex justify-content-between align-items-center">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb ">
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Dashboard")"><i class="fa-solid fa-house"></i></a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewData["PageTitle"]</li>
+            </ol>
+        </nav>
+        <a href="@ViewData["PageActionUrl"]" class="btn btn-success mb-4">
+            @ViewData["PageActionText"]
+        </a>
+    </div>
+      <!-- Left: Table -->
     <div class="col-md-7 d-flex">
+
+        
         <div class="w-100">
             <table class="table clean-header table-borderless w-100 h-100" style="table-layout: fixed;">
                 <thead>
@@ -127,20 +59,12 @@
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.TitleAndIcon)</td>
                             <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                          @*   <td>
-                                <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-                            </td> *@
+                         
                             <td>
                                 <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId" title="Edit" class="text-success text-decoration-none">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                            @*     &nbsp;
-                                <a asp-action="Details" asp-route-id="@item.CategoryId" title="Details" class="text-info text-decoration-none">
-                                    <i class="fa fa-info-circle"></i>
-
-                                 </a> *@
+                            
                                 &nbsp;
                                 <button type="button" class="btn btn-link p-0 m-0 text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-category-id="@item.CategoryId">
                                     <i class="fa fa-trash-alt"></i>
@@ -154,7 +78,7 @@
                     }
                 </tbody>
             </table>
-
+    
             <!-- Pagination Controls -->
         
             <nav aria-label="Page navigation">
@@ -213,3 +137,101 @@
         });
     </script>
 }
+
+
+
+
+
+
+@* <h1>Index</h1>
+
+<p>
+    <a asp-action="AddOrEdit">Create New</a>
+</p> *@
+
+@* Works but icon not the same width as rows *@
+
+@* < div class="row"> *@
+<!-- Left: Table -->
+@*    <div class="col-md-7">
+        <table class="table clean-header table-borderless w-100" style="table-layout: fixed;">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th> *@
+@*    <th>@Html.DisplayNameFor(model => model.Icon)</th> *@
+@*   <th>@Html.DisplayNameFor(model => model.Type)</th>
+                    <th style="width: 200px;">Actions</th>
+                  @*   <th></th> *@
+@*      </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.TitleAndIcon)</td>
+                    @*     <td>@Html.DisplayFor(modelItem => item.Icon)</td> *@
+@*   <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                        <td>
+                            <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div> *@ 
+
+    <!-- Right: Icon Block -->
+@*  <div class="col-md-5">
+        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: #212b36; height: 100%;">
+          @*   <i class="fa-solid fa-shapes fa-2xl text-white"></i> *@
+@*     <i class="fa-solid fa-coins fa-2xl text-white"></i>
+        </div>
+    </div>
+</div>  
+ *@
+@* work end here  ---------------------------------------- *@
+
+@*   <div class="row d-flex align-items-stretch">
+    <!-- Left: Table -->
+    <div class="col-md-7 d-flex">
+        <div class="w-100">
+            <table class="table clean-header table-borderless w-100 h-100" style="table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Title)</th>
+                        <th>@Html.DisplayNameFor(model => model.Type)</th>
+                        <th style="width: 200px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.TitleAndIcon)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Type)</td>
+                                <td>
+                                    <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Right: Icon Block -->
+    <div class="col-md-5 d-flex">
+        <div class="widget w-100 d-flex justify-content-center align-items-center" style="background-color: #212b36;">
+            <i class="fa-solid fa-coins fa-2xl text-white"></i>
+        </div>
+    </div>
+</div>
+ *@
+
+@*   -----------------------------------   end here ------------------------------------------ *@
+
+@*   @model PagedCategoryListViewModel *@

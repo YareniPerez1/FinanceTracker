@@ -244,6 +244,9 @@ table.clean-header td {
     margin-left: 290px;
     transition: margin-left 0.3s;
 }
+    .main-content.no-sidebar {
+        margin-left: 0;
+    }
 
 /* Collapsed Sidebar */
 .sidebar-collapsed {
@@ -334,3 +337,10 @@ table.clean-header td {
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1); /* turns icon white */
 }
+
+
+.navbar {
+    background-color: #1a222b;
+    color: #fff;
+}
+
