@@ -10,6 +10,7 @@ using FTDataAccess.Models;
 using FTDataAccess.Interface;
 using FTDataAccess.Repository;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Daily_Dime.Controllers
 {
@@ -25,29 +26,24 @@ namespace Daily_Dime.Controllers
         }
 
         // GET: Transaction
+        [Authorize]
         public async Task<IActionResult> Index(int page =1)
         {
+          
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var transactions = await _transactionRepository.GetAllAsync(userId);
-            //    .Include(t => t.Category)  // Include the Category navigation property
-            //.ToListAsync();
 
-            // Get all transactions as a List
-
-
-            var pageSize = 5; // Items per page
-
-          
+            var pageSize = 5;
             var totalItems = transactions.Count();
 
-            var categories = transactions
+            var pagedTransactions = transactions
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
             var viewModel = new PagedTransactionViewModel
             {
-                Transactions = transactions,
+                Transactions = pagedTransactions, 
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize)
             };
@@ -55,8 +51,8 @@ namespace Daily_Dime.Controllers
             return View(viewModel);
         }
 
-      
 
+        [Authorize]
         public async Task<IActionResult> AddOrEdit(int? id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -76,11 +72,12 @@ namespace Daily_Dime.Controllers
             }
 
             // Editing existing transaction
-            var transaction = await _transactionRepository.GetByIdAsync(id.Value);
-            if (transaction == null || transaction.UserId != userId)
-                return NotFound();
+            var transaction = await _transactionRepository.GetByIdAsync(id.Value, userId);
+            if (transaction == null )
+                //|| transaction.UserId != userId)
+                return Forbid();
 
-          
+
 
 
             return View(transaction);
@@ -93,22 +90,16 @@ namespace Daily_Dime.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Remove validation for navigation properties if necessary
             ModelState.Remove("User");
             ModelState.Remove("UserId");
             ModelState.Remove("Category");
-            // var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //if (!ModelState.IsValid)
-            //{
-            //    var userCategories = await _context.Categories
-            //        .Where(c => c.UserId == userId)
-            //        .ToListAsync();
-            //    // Rehydrate the selected Category so FormattedAmount won't break
-            //    transaction.Category = userCategories.FirstOrDefault(c => c.CategoryId == transaction.CategoryId);
 
-            //    ViewData["CategoryId"] = new SelectList(userCategories, "CategoryId", "Title", transaction.CategoryId);
-            //    return View(transaction);
-            //}
+            if (transaction.Amount == 0)
+            {
+                ModelState.AddModelError("Amount", "Amount cannot be zero.");
+            }
+
+
             if (!ModelState.IsValid)
             {
                 foreach (var state in ModelState)
@@ -123,7 +114,7 @@ namespace Daily_Dime.Controllers
                 ViewData["CategoryId"] = new SelectList(userCategories, "CategoryId", "Title", transaction.CategoryId);
                 return View(transaction);
             }
-
+         
             if (transaction.TransactionId == 0)
             {
                 // Creating new transaction
@@ -133,9 +124,9 @@ namespace Daily_Dime.Controllers
             else
             {
                 // Editing existing transaction
-                var existingTransaction = await _transactionRepository.GetByIdAsync(transaction.TransactionId);
+                var existingTransaction = await _transactionRepository.GetByIdAsync(transaction.TransactionId, userId);
                 if (existingTransaction == null || existingTransaction.UserId != userId)
-                    return NotFound();
+                    return Forbid();
 
                 // Update fields
                 existingTransaction.CategoryId = transaction.CategoryId;
@@ -158,13 +149,15 @@ namespace Daily_Dime.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var transaction = await _transactionRepository.GetByIdAsync(id);
-            if (transaction == null || transaction.UserId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var transaction = await _transactionRepository.GetByIdAsync(id, userId);
+            if (transaction == null )
+                //|| transaction.UserId != User.FindFirstValue(ClaimTypes.NameIdentifier))
             {
-                return NotFound();
+                return Forbid();
             }
 
-            await _transactionRepository.DeleteAsync(id);
+            await _transactionRepository.DeleteAsync(id, userId);
             return RedirectToAction(nameof(Index));
         }
 

@@ -37,19 +37,19 @@ namespace FTDataAccess.Repository
                                  .Where(c => c.UserId == userId)
                                  .ToListAsync();
         }
-        public async Task<Category?> GetByIdAsync(int id)
+        public async Task<Category?> GetByIdAsync(int id ,string userId)
         {
-            return await _context.Categories.FirstOrDefaultAsync(c => c.CategoryId == id);
+            return await _context.Categories.FirstOrDefaultAsync(c => c.CategoryId == id && c.UserId == userId);
         }
 
        
 
-        public async Task UpdateAsync(Category category)
+        public async Task UpdateAsync(Category category, string userId)
         {
             // Detach any existing entity with the same CategoryId to avoid tracking issues
             var existingCategory = await _context.Categories
                 .AsNoTracking() // Prevents tracking while fetching the entity
-                .FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
+                .FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId && c.UserId == userId);
 
             if (existingCategory == null)
             {
@@ -77,9 +77,12 @@ namespace FTDataAccess.Repository
 
 
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id, string userId)
         {
-            var category = await _context.Categories.FindAsync(id);
+            //var category = await _context.Categories.FindAsync(id);
+            var category = await _context.Categories
+        .FirstOrDefaultAsync(c => c.CategoryId == id && c.UserId == userId);
+
             if (category != null)
             {
                 _context.Categories.Remove(category);
@@ -87,9 +90,9 @@ namespace FTDataAccess.Repository
             }
         }
 
-        public async Task<bool> ExistsAsync(int id)
+        public async Task<bool> ExistsAsync(int id, string userId)
         {
-            return await _context.Categories.AnyAsync(c => c.CategoryId == id);
+            return await _context.Categories.AnyAsync(c => c.CategoryId == id && c.UserId == userId);
         }
     }
 

@@ -16,6 +16,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Daily_Dime.styles.css" asp-append-version="true" />
     <!-- Syncfusion ASP.NET Core controls scripts -->
@@ -106,176 +108,16 @@
  
 </body>
 
-@* <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Daily_Dime</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    @* Sidebar (now fixed) 
-    <div class="sidebar-fixed">
-        @await Html.PartialAsync("_SideBar")
-    </div>
-
-    @* Main content shifts to the right 
-    <div class="main-content">
-        <div class="container mt-5">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
-    </div>
-
-    @* Scripts 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
- *@
-
-@* <body>
-
-    <div class="d-flex">
-        @await Html.PartialAsync("_SideBar")
-
-        <div class="flex-grow-1" style="margin-left:290px;">
-            <!-- Main Content -->
-
-            <header>
-                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Daily_Dime</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                            <ul class="navbar-nav flex-grow-1">
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                                </li>
-                            </ul>
-                            <partial name="_LoginPartial" />
-                        </div>
-                    </div>
-                </nav>
-            </header>
-
-            <div class="container mt-5">
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
-            </div>
-
-        </div> <!-- End Main Content -->
-    </div> <!-- End d-flex -->
-
-    @* Scripts 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body> *@ 
-@* <body>
-
-    <div class="d-flex">
-        @await Html.PartialAsync("_SideBar")
-
-        @* <div class="dock-target">
-            @RenderBody()
-        </div> 
-        <div class="flex-grow-1" style="margin-left:290px;">
-            <!-- Main Content -->
-
-
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Daily_Dime</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <main role="main" class="pb-3">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="d-flex flex-column mb-5">
-                                <div class="d-flex mb-1">
-                                    <div class="flex-grow-1">
-                                        <h3 class="fw-bold">
-                                            @ViewData["PageTitle"]
-                                        </h3>
-                                    </div>
-                                    <div>
-                                        @if (ViewData["PageActionText"] != null)
-                                        {
-                                        <a class="btn btn-success" href="@ViewData["PageActionUrl"]">
-                                            @ViewData["PageActionText"]
-                                        </a>
-                                        }
-                                    </div>
-                                </div>
-                                @* breadcrumb 
-                              
-                            </div>
-                        </div>
-                    </div>
-                    @RenderBody()
-                </main>
-            </div>
-        </div>
-       
-    </div>
-
- @*    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Daily_Dime - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer> 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-    <!-- Syncfusion ASP.NET Core Script Manager -->
-    <ejs-scripts></ejs-scripts>
-</body> *@
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a class="nav-link px-2 text-white" asp-controller="Home" asp-action="About">About</a></li>
+            <li class="nav-item"><a class="nav-link px-2 text-white" asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link px-2 text-white" asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>
+            <li class="nav-item"><a class="nav-link px-2 text-white" asp-controller="Home" asp-action="Index">Home</a></li>
+        </ul>
+        <p class="text-center text-white">© 2025 Daily Dime, Inc</p>
+    </footer>
+</div>
 </html>

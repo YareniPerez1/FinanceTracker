@@ -12,6 +12,7 @@ using FTDataAccess.Interface;
 using System.Security.Claims;
 using Syncfusion.EJ2.Navigations;
 using Daily_Dime.Models;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Daily_Dime.Controllers
@@ -26,14 +27,8 @@ namespace Daily_Dime.Controllers
             _categoryRepo = categoryRepo;
         }
 
-        // GET: Category
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    var categories = await _categoryRepo.GetAllAsync(userId);
-        //    return View(categories);
-        //}
+        [Authorize]
         public async Task<IActionResult> Index(int page = 1)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -65,26 +60,11 @@ namespace Daily_Dime.Controllers
 
 
         // GET: Category/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //        return NotFound();
-
-        //    var category = await _categoryRepo.GetByIdAsync(id.Value);
-        //    if (category == null)
-        //        return NotFound();
-
-        //    return View(category);
-        //}
-
-        // GET: Category/Create
-        //public IActionResult Create()
-        //{
-        //    return View(new Category());
-        //}
-
+     
+        [Authorize]
         public async Task<IActionResult> AddOrEdit(int? id)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (id == null || id == 0)
             {
                 // Creating a new category
@@ -92,7 +72,7 @@ namespace Daily_Dime.Controllers
             }
 
             // Editing existing category
-            var category = await _categoryRepo.GetByIdAsync(id.Value);
+            var category = await _categoryRepo.GetByIdAsync(id.Value, userId);
             if (category == null)
                 return NotFound();
 
@@ -101,25 +81,6 @@ namespace Daily_Dime.Controllers
             return View(category);
         }
 
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
-        //{
-        //    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    category.UserId = userId;
-
-        //    ModelState.Remove("User"); // if navigation property exists
-        //    ModelState.Remove("UserId"); // optional
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        await _categoryRepo.AddAsync(category, userId);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    return View(category);
-        //}
 
 
         [HttpPost]
@@ -143,7 +104,7 @@ namespace Daily_Dime.Controllers
             else
             {
                 // Editing existing category
-                var existingCategory = await _categoryRepo.GetByIdAsync(category.CategoryId);
+                var existingCategory = await _categoryRepo.GetByIdAsync(category.CategoryId, userId);
                 if (existingCategory == null)
                     return NotFound();
 
@@ -152,7 +113,7 @@ namespace Daily_Dime.Controllers
                 existingCategory.Icon = category.Icon;
                 existingCategory.Type = category.Type;
 
-                await _categoryRepo.UpdateAsync(existingCategory);
+                await _categoryRepo.UpdateAsync(existingCategory, userId);
             }
 
             return RedirectToAction(nameof(Index));
@@ -160,125 +121,14 @@ namespace Daily_Dime.Controllers
 
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("CategoryId,Title,Icon,Type")] Category category)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        // Get the current logged-in user's ID
-        //        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);  // Get UserId from claims
-
-        //        // Pass UserId to the repository when adding a new category
-        //        await _categoryRepo.AddAsync(category, userId);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(category);
-        //}
-        //public async Task<IActionResult> Create([Bind("CategoryId,Title,Icon,Type")] Category category)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        await _categoryRepo.AddAsync(category);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(category);
-        //}
-
-        // GET: Category/Edit/5
-        //public async Task<IActionResult> AddOrEdit(int? id)
-        //{
-        //    if (id == null)
-        //        return NotFound();
-
-        //    var category = await _categoryRepo.GetByIdAsync(id.Value);
-        //    if (category == null)
-        //        return NotFound();
-
-        //    return View(category);
-        //}
-
-        // POST: Category/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Title,Icon,Type")] Category category)
-        //{
-        //    if (id != category.CategoryId)
-        //        return NotFound();
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            await _categoryRepo.UpdateAsync(category);
-        //        }
-        //        catch
-        //        {
-        //            if (!await _categoryRepo.ExistsAsync(category.CategoryId))
-        //                return NotFound();
-        //            throw;
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(category);
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AddOrEdit(int id, [Bind("CategoryId,Title,Icon,Type")] Category category)
-        //{
-        //    if (id != category.CategoryId)
-        //        return NotFound();
-
-        //    // Get current category from DB to preserve UserId
-        //    var existingCategory = await _categoryRepo.GetByIdAsync(id);
-        //    if (existingCategory == null)
-        //        return NotFound();
-
-        //    // Assign the existing UserId to avoid validation errors
-        //    category.UserId = existingCategory.UserId;
-
-        //    ModelState.Remove("User"); // prevent validation on navigation property
-        //    ModelState.Remove("UserId"); // needed if UserId is [Required]
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            await _categoryRepo.UpdateAsync(category);
-        //        }
-        //        catch
-        //        {
-        //            if (!await _categoryRepo.ExistsAsync(category.CategoryId))
-        //                return NotFound();
-        //            throw;
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-
-        //    return View(category);
-        //}
-
-
-        // GET: Category/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //        return NotFound();
-
-        //    var category = await _categoryRepo.GetByIdAsync(id.Value);
-        //    if (category == null)
-        //        return NotFound();
-
-        //    return View(category);
-        //}
 
         // POST: Category/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _categoryRepo.DeleteAsync(id);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await _categoryRepo.DeleteAsync(id, userId);
             return RedirectToAction(nameof(Index));
         }
 

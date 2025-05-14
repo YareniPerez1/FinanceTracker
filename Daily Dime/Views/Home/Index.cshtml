@@ -5,41 +5,6 @@
 
 }
 
-@* <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-<a asp-controller="Category" asp-action="Index" class="btn btn-primary">
-   View and add categories
-</a>
-<a asp-controller="Transaction" asp-action="Index" class="btn btn-primary">
- View and add transactions
-</a> *@
-@* <div class="widget text-white">
-    <div class="container px-4 py-5">
-        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <!-- Bigger image with more rounded corners -->
-            <div class="col-12 col-lg-6 text-center text-lg-end">
-                <img src="~/CoverImage.jpeg"
-                     class="img-fluid shadow-lg"
-                     style="width: 100%; max-width: 800px; border-radius: 3rem; object-fit: cover;"
-                     alt="Cover Image" />
-            </div>
-
-            <!-- Text and button section -->
-            <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3 text-white">Make every Dime count</h1>
-                <p class="lead text-white">Track your spending with custom categories and clear insights.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 rounded-pill">
-                        Get Started
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> *@
-
 
 
 <div class="widget  text-white">
@@ -72,31 +37,123 @@
 </div>
 
 
+<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <!-- Feature 1 -->
+    <div class="feature col">
+        <div class="widget p-4 h-100 text-white">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-1 mb-3">
+                <i class="bi bi-bar-chart"></i>
+            </div>
+            <h3 class="fs-2">Visual Reports</h3>
+            <p>See your income and expenses visualized through interactive charts.</p>
+            <a href="#" class="icon-link text-white">
+                Get Started <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
+    </div>
 
-@* 
-<div class="container px-4 py-5" id="custom-cards"> 
-    <h2 class="pb-2 border-bottom">Custom cards</h2> 
-    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-        <div class="col"> <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');"> 
-            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3> 
-                <ul class="d-flex list-unstyled mt-auto">
-                    <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"> </li> 
-                    <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Location"><use xlink:href="#geo-fill"></use></svg> <small>Earth</small> </li> 
-                    <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Duration"><use xlink:href="#calendar3"></use></svg> <small>3d</small> </li> </ul> </div> </div> </div>
-                    <div class="col"> <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');"> 
-                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
-                            <ul class="d-flex list-unstyled mt-auto">
-                                <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"> </li> 
-                                <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Location"><use xlink:href="#geo-fill"></use></svg> <small>Pakistan</small> </li> 
-                                <li class="d-flex align-items-center"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Duration"><use xlink:href="#calendar3"></use></svg> <small>4d</small> </li> </ul> </div> </div> </div> 
-                                <div class="col"> <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');"> 
-                                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                                        <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3> 
-                                        <ul class="d-flex list-unstyled mt-auto"> <li class="me-auto"> <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white"> </li> 
-                                            <li class="d-flex align-items-center me-3"> <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Location"><use xlink:href="#geo-fill"></use></svg> <small>California</small> </li> 
-                                            <li class="d-flex align-items-center">
-    <svg class="bi me-2" width="1em" height="1em" role="img" aria-label="Duration"><use xlink:href="#calendar3"></use></svg> <small>5d</small> </li> </ul> </div> </div> </div> </div> </div> *@
+    <!-- Feature 2 -->
+    <div class="feature col">
+        <div class="widget p-4 h-100 text-white">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-1 mb-3">
+                <i class="bi bi-people"></i>
+            </div>
+            <h3 class="fs-2">User Management</h3>
+            <p>Manage your profile and user-specific data securely and easily.</p>
+            <a href="#" class="icon-link text-white">
+                Get Started <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="feature col">
+        <div class="widget p-4 h-100 text-white">
+            <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-1 mb-3">
+                <i class="bi bi-sliders2"></i>
+            </div>
+            <h3 class="fs-2">Customization</h3>
+            <p>Personalize charts and preferences without changing your data.</p>
+            <a href="#" class="icon-link text-white">
+                Get Started <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center"> <h1 class="display-4 text-white">Pricing</h1> 
+    <p class="fs-5 text-white">Choose a plan that meets your tracking needs!</p> </div>
+
+<main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center text-white bg-transparent">
+
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm bg-transparent border-white text-white">
+                <div class="card-header py-3 bg-transparent border-white">
+                    <h4 class="my-0 fw-normal">Free</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$0<small class="text-white">/mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Customized spending and income categories</li>
+                        <li>Categorized transactions</li>
+                        <li>Visualizations</li>
+                        <li>Help center access</li>
+                    </ul>
+                @*     <button type="button" class="w-100 btn btn-lg btn-outline-light">Sign up for free</button> *@
+                    <a href="/Identity/Account/Register" class="w-100 btn btn-lg btn-outline-light">Sign up for free</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm bg-transparent border-white text-white">
+                <div class="card-header py-3 bg-transparent border-white">
+                    <h4 class="my-0 fw-normal">Pro - Coming Soon</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$10<small class="text-white">/mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Reccuring Transactions</li>
+                        <li>Budegt goals for each category</li>
+                        <li>App notifcations</li>
+                        <li>Family Sharing</li>
+                  
+                    </ul>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-light">Coming soon</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm bg-transparent border-white text-white">
+                <div class="card-header py-3 bg-transparent border-white">
+                    <h4 class="my-0 fw-normal">Enterprise - Coming Soon</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$15<small class="text-white">/mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>sharable dashboards</li>
+                        <li>Ai suggested savings</li>
+                        <li>Data Export</li>
+                        <li>Bank Integration</li>
+                    </ul>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-light">Coming soon</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+
+
+
+
+
+
 
 

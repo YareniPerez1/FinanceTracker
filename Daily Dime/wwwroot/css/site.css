@@ -289,8 +289,9 @@ table.clean-header td {
 .sidebar-label {
     font-size: 14px;
     font-weight: bold;
-    /*color: #6c757d;*/ /* Adjust the color to match your theme */
+  
     color: var(--bs-success); /* Bootstrap's success color for labels */
+  
     padding: 10px 15px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -344,3 +345,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #fff;
 }
 
+.card,
+.card-header {
+    border: 1px solid white !important;
+}
+
+.uniform-img {
+    height: 300px; /* or whatever height works best */
+    object-fit: cover;
+    width: 100%;
+}

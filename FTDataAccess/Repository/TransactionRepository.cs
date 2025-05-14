@@ -30,26 +30,22 @@ namespace FTDataAccess.Repository
         }
 
 
-        //public async Task<List<Transaction>> GetAllAsync(string userId)
+
+        //public async Task<Transaction> GetByIdAsync(int id)
         //{
         //    return await _context.Transactions
         //        .Include(t => t.Category)
-        //        .Include(t => t.User) // If you need to include the User too
-        //        .Where(t => t.UserId == userId)
-        //        .ToListAsync();
+        //        .Include(t => t.User)
+        //        .FirstOrDefaultAsync(t => t.TransactionId == id);
         //}
 
-
-
-
-        public async Task<Transaction> GetByIdAsync(int id)
+        public async Task<Transaction> GetByIdAsync(int id, string userId)
         {
             return await _context.Transactions
                 .Include(t => t.Category)
                 .Include(t => t.User)
-                .FirstOrDefaultAsync(t => t.TransactionId == id);
+                .FirstOrDefaultAsync(t => t.TransactionId == id && t.UserId == userId);
         }
-
         public async Task AddAsync(Transaction transaction, string userId)
         {
             transaction.UserId = userId;
@@ -63,20 +59,65 @@ namespace FTDataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        //public async Task DeleteAsync(int id)
+        //{
+        //    var transaction = await _context.Transactions.FindAsync(id);
+        //    if (transaction != null)
+        //    {
+        //        _context.Transactions.Remove(transaction);
+        //        await _context.SaveChangesAsync();
+        //    }
+        //}
+        public async Task DeleteAsync(int id, string userId)
         {
-            var transaction = await _context.Transactions.FindAsync(id);
+            var transaction = await _context.Transactions
+                .FirstOrDefaultAsync(t => t.TransactionId == id && t.UserId == userId);
+
             if (transaction != null)
             {
                 _context.Transactions.Remove(transaction);
                 await _context.SaveChangesAsync();
             }
         }
+        //public async Task<bool> ExistsAsync(int id)
+        //{
+        //    return await _context.Transactions.AnyAsync(e => e.TransactionId == id);
+        //}
 
-        public async Task<bool> ExistsAsync(int id)
+
+        public async Task<bool> ExistsAsync(int id, string userId)
         {
-            return await _context.Transactions.AnyAsync(e => e.TransactionId == id);
+            return await _context.Transactions
+                .AnyAsync(t => t.TransactionId == id && t.UserId == userId);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public async Task<List<Transaction>> GetAllAsync(string userId)
+        //{
+        //    return await _context.Transactions
+        //        .Include(t => t.Category)
+        //        .Include(t => t.User) // If you need to include the User too
+        //        .Where(t => t.UserId == userId)
+        //        .ToListAsync();
+        //}
+
+
+
+
 
     }
 }
