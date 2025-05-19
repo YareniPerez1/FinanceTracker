@@ -355,3 +355,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     object-fit: cover;
     width: 100%;
 }
+
+
+
+
+
+
+.table-dark-bg th,
+.table-dark-bg td {
+    background-color: #1a222b !important;
+    color: white !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+

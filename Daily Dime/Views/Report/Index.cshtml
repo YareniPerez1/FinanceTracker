@@ -1,5 +1,203 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    ViewData["Title"] = "Expense Report";
 }
+@model DashboardViewModel
+<div class="container mt-4">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold">Expense Report</h2>
+       @*  <a class="btn btn-outline-secondary" asp-action="DownloadPdf">
+            <i class="fa-solid fa-file-pdf"></i> Download PDF
+        </a> *@
+        <a class="btn btn-outline-secondary"
+           asp-action="DownloadPdf"
+           asp-route-startDate="@Model.StartDate.ToString("yyyy-MM-dd")"
+           asp-route-endDate="@Model.EndDate.ToString("yyyy-MM-dd")">
+            <i class="fa-solid fa-file-pdf"></i> Download PDF
+        </a>
+    </div>
+
+    <!-- Date Filter Form -->
+    <form method="get" asp-action="Index" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" name="startDate" id="startDate"
+                   value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="col-md-4">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" name="endDate" id="endDate"
+                   value="@Model.EndDate.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-success">Apply</button>
+        </div>
+    </form>
+
+  
+    <!-- Bar Chart -->
+    <div class="card mb-4 shadow-sm" style="background-color: #1a222b;">
+        <div class="card-body">
+            <h5 class="card-title text-white">Expenses by Category</h5>
+            <div style="height: 400px;">
+                <!-- Fixed height -->
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Recent Transactions -->
+    <div class="card shadow-sm" style="background-color: #1a222b; color: white;">
+        <div class="card-body">
+            <h5 class="card-title text-white">Recent Transactions</h5>
+            <div class="table-responsive">
+                <table class="table table-borderless table-hover table-dark-bg mb-0">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #444;">
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th class="text-end">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tx in Model.RecentTransactions)
+                        {
+                            <tr>
+                                <td>@tx.Category.TitleAndIcon</td>
+                                <td>@tx.Date.ToString("MMM dd, yyyy")</td>
+                                <td class="text-end">@tx.FormattedAmount</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="mt-4">
+                <h6 class="text-white">Summary</h6>
+                <p><strong>Total Income:</strong> @Model.TotalIncome</p>
+                <p><strong>Total Expense:</strong> @Model.TotalExpense</p>
+            </div>
+        </div>
+    </div>
+
+
+@section Scripts {
+    <script>
+        const ctx = document.getElementById('barChart').getContext('2d');
+
+        // Bootstrap-success inspired green shades
+        const gradientColors = [
+            '#28a745', // light success green
+            '#218838',
+            '#1e7e34',
+            '#20c997', // teal green
+            '#198754', // default success
+            '#146c43',
+            '#0f5132'  // darkest
+        ];
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.BarLabels)),
+                datasets: [{
+                    label: 'Expenses',
+                    data: @Html.Raw(Json.Serialize(Model.BarData)),
+                    backgroundColor: gradientColors.slice(0, @Model.BarData.Length),
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true, // fix stretching issue
+                layout: {
+                    padding: 10
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: 'white'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        titleColor: '#333',
+                        bodyColor: '#333'
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @section Scripts {
+    <script>
+        // Bar Chart
+        const ctx = document.getElementById('barChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.BarLabels)),
+                datasets: [{
+                    label: 'Expenses',
+                    data: @Html.Raw(Json.Serialize(Model.BarData)),
+                    backgroundColor: '#ff6384'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+} *@

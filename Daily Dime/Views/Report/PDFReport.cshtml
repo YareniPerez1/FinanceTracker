@@ -1,0 +1,161 @@
+﻿@model Daily_Dime.Models.DashboardViewModel
+@using System.Linq
+
+@{
+    var maxAmount = Model.BarData.Length > 0 ? Model.BarData.Max() : 1;
+    ViewData["HideSidebar"] = true;
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Expense Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+            background-color: white;
+            color: black;
+            padding: 20px;
+        }
+
+        h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+            table th, table td {
+                border: 1px solid #000;
+                padding: 8px;
+                text-align: left;
+            }
+
+            table th {
+                background-color: #f2f2f2;
+            }
+
+        .summary {
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+            .summary p {
+                margin: 5px 0;
+            }
+    </style>
+</head>
+<body>
+
+    <h2>Expense Report</h2>
+
+    <p style="text-align:center;">
+        <strong>Period:</strong> @Model.StartDate.ToShortDateString() - @Model.EndDate.ToShortDateString()
+    </p>
+
+    <h3>Recent Transactions</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tx in Model.RecentTransactions)
+            {
+                <tr>
+                    <td>@tx.Date.ToShortDateString()</td>
+                    <td>@tx.Category.Title</td>
+                    <td>@tx.Amount.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="summary">
+        <h3>Summary</h3>
+        <p><strong>Total Income:</strong> @Model.TotalIncome</p>
+        <p><strong>Total Expense:</strong> @Model.TotalExpense</p>
+    </div>
+
+</body>
+</html>
+
+
+@* 
+<h2 style="text-align:center;">Expense Report</h2>
+
+<p><strong>Period:</strong> @Model.StartDate.ToShortDateString() - @Model.EndDate.ToShortDateString()</p>
+
+<h3>Recent Transactions</h3>
+<table style="width:100%; border-collapse: collapse;" border="1">
+    <tr>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Amount</th>
+    </tr>
+    @foreach (var tx in Model.RecentTransactions)
+    {
+        <tr>
+            <td>@tx.Date.ToShortDateString()</td>
+            <td>@tx.Category.Title</td>
+            <td>@tx.Amount.ToString("C")</td>
+        </tr>
+    }
+</table>
+
+<h3 style="margin-top:30px;">Summary</h3>
+<p><strong>Total Income:</strong> @Model.TotalIncome</p>
+<p><strong>Total Expense:</strong> @Model.TotalExpense</p> *@
+@* <h3 style="margin-top:30px;">Expenses by Category</h3>
+
+<div class="chart-container">
+    @for (int i = 0; i < Model.BarLabels.Length; i++)
+    {
+        var label = Model.BarLabels[i];
+        var amount = Model.BarData[i];
+        var heightPercent = (int)((amount / maxAmount) * 100);
+        <div class="bar-column">
+            <div class="bar-value">@amount.ToString("C")</div>
+            <div class="bar" style="height:@heightPercent%;"></div>
+            <div class="bar-label">@label</div>
+        </div>
+    }
+</div> *@
+
+
+
+
+
+
+
+
+
+@*
+
+@for (int i = 0; i < Model.BarLabels.Length; i++)
+{
+    var label = Model.BarLabels[i];
+    var amount = Model.BarData[i];
+    var barWidth = (int)(amount * 2); // Adjust scaling factor as needed
+
+    <div style="margin-bottom:5px;">
+        <strong>@label</strong>
+        <div style="background:#3498db; height:20px; width:@barWidth px;"></div>
+        <span>@amount.ToString("C")</span>
+    </div>
+} *@

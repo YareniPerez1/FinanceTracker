@@ -14,12 +14,17 @@ namespace Daily_Dime.Models
         public string RecommendedSavings { get; set; }
         public string Balance { get; set; }
 
+
         public string[] DoughnutLabels { get; set; }
         public decimal[] DoughnutData { get; set; }
 
         public string[] SplineLabels { get; set; }
         public decimal[] SplineIncomeData { get; set; }
         public decimal[] SplineExpenseData { get; set; }
-    
-}
+
+        public string[] BarLabels { get; set; }
+        public decimal[] BarData { get; set; }
+
+
+    }
 }

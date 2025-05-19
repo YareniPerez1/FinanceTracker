@@ -3,6 +3,7 @@ using FTDataAccess.Interface;
 using FTDataAccess.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Rotativa.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddScoped<ITransaction, TransactionRepository>();
 
 builder.Services.AddScoped<ICategory, CategoryRepository>();
 var app = builder.Build();
+
+RotativaConfiguration.Setup(app.Environment.WebRootPath, "Rotativa");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
