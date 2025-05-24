@@ -11,4 +11,4 @@ SRS DOCUMENT
 [View SRS Document (PDF)](./FTDataAccess/CapstoneDocuments/SRS_Document.pdf)
 
 USER TESTING NOTES
-[View User Testing Notes (PDF)](./FTDataAccess/CapstoneDocuments/UserTestingNotes.pdf
+[View User Testing Notes (PDF)](./FTDataAccess/CapstoneDocuments/UserTestingNotes.pdf)
