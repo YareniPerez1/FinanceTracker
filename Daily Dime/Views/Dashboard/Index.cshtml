@@ -14,8 +14,15 @@
                 <i class="fa-solid fa-dollar-sign fa-2xl"></i>
             </div>
             <div class="d-flex flex-column m-auto py-3">
-                <span class="lead">Total Income</span>
-                <h1 class="display-6 fw-bold">@Model.TotalIncome</h1>
+                <span class="lead">
+                    Total Income <i class="fa-solid fa-circle-info ms-2 text-white fa-xs"
+                                    data-bs-toggle="tooltip"
+                                    title="This is your total income for the selected date range. It cannot be edited.">
+                    </i>
+                </span>
+                <h1 class="display-6 fw-bold">
+                    @Model.TotalIncome 
+                </h1>
             </div>
         </div>
     </div>
@@ -26,8 +33,15 @@
                 <i class="fa-solid fa-dollar-sign fa-2xl"></i>
             </div>
             <div class="d-flex flex-column m-auto py-3">
-                <span class="lead">Total Expense</span>
-                <h1 class="display-6 fw-bold">@Model.TotalExpense</h1>
+                <span class="lead">
+                    Total Expense <i class="fa-solid fa-circle-info ms-2 text-white fa-xs"
+                                     data-bs-toggle="tooltip"
+                                     title="This is your total expense for the selected date range. It cannot be edited.">
+                    </i>
+                </span>
+                <h1 class="display-6 fw-bold">
+                    @Model.TotalExpense 
+                </h1>
             </div>
         </div>
     </div>
@@ -38,8 +52,15 @@
                 <i class="fa-solid fa-dollar-sign fa-2xl"></i>
             </div>
             <div class="d-flex flex-column m-auto py-3">
-                <span class="lead">Balance</span>
-                <h1 class="display-6 fw-bold">@Model.Balance</h1>
+                <span class="lead">
+                    Balance <i class="fa-solid fa-circle-info ms-2 text-white fa-xs"
+                               data-bs-toggle="tooltip"
+                               title="This is your balance after expenses are taken out for the selected date range. It cannot be edited.">
+                    </i>
+                </span>
+                <h1 class="display-6 fw-bold">
+                    @Model.Balance 
+                </h1>
             </div>
         </div>
     </div>
@@ -52,11 +73,21 @@
 <form method="get" asp-action="Index" class="mb-4">
     <div class="d-flex justify-content-center gap-3 flex-wrap">
         <div class="col-md-3">
-            <label for="startDate" class="form-label small">Start Date</label>
+            <label for="startDate" class="form-label small">
+                Start Date <i class="fa-solid fa-circle-info ms-2 text-white fa-xs"
+                              data-bs-toggle="tooltip"
+                              title="Select the beginning of your report range">
+                </i>
+            </label>
             <input type="date" class="form-control" name="startDate" id="startDate" value="@Model.StartDate.ToString("yyyy-MM-dd")" />
         </div>
         <div class="col-md-3">
-            <label for="endDate" class="form-label small">End Date</label>
+            <label for="endDate" class="form-label small">
+                End Date  <i class="fa-solid fa-circle-info ms-2 text-white fa-xs"
+                             data-bs-toggle="tooltip"
+                             title="Select the ending of your report range">
+                </i>
+            </label>
             <input type="date" class="form-control" name="endDate" id="endDate" value="@Model.EndDate.ToString("yyyy-MM-dd")" />
         </div>
         <div class="col-md-3 d-flex align-items-end">
@@ -72,7 +103,12 @@
     <div class="col-md-4">
         <div class="widget chart">
             <div class="p-4">
-                <h5 class="fw-bold">Expense By Category</h5>
+                <h5 class="fw-bold">
+                    Expense By Category <i class="fa-solid fa-circle-info text-white fa-xs"
+                                           data-bs-toggle="tooltip"
+                                           title="Shows how much you've spent in each category for the selected date range.">
+                    </i>
+                </h5>
             </div>
             <div class="p-4">
                 <canvas id="doughnutChart"></canvas>
@@ -82,7 +118,12 @@
     <div class="col-md-8">
         <div class="widget chart">
             <div class="p-4">
-                <h5 class="fw-bold">Income vs Expense</h5>
+                <h5 class="fw-bold">
+                    Income vs Expense <i class ="fa-solid fa-circle-info ms-2 text-white fa-xs"
+                                         data-bs-toggle="tooltip"
+                                         title="Shows how much you've spent and your income for the selected date range.">
+                    </i>
+                </h5>
             </div>
             <div class="p-4">
                 <canvas id="splineChart"></canvas>
@@ -226,8 +267,19 @@
                     x: {
                         grid: { display: false }
                     }
+
+
                 }
             }
+            
         });
+
+             // Tooltip Initialization (Run after DOM is ready)
+            document.addEventListener('DOMContentLoaded', function () {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                    new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            });
     </script>
 }

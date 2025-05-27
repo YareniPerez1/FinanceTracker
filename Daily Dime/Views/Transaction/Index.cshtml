@@ -3,7 +3,7 @@
 
 @{
     ViewData["PageTitle"] = "Transactions";
-    ViewData["PageActionText"] = "+ New Transaction";
+    ViewData["PageActionText"] = "+ Add a new Transaction";
     ViewData["PageActionUrl"] = "/Transaction/AddOrEdit";
     var firstItem = Model.Transactions.FirstOrDefault();
 }
@@ -29,7 +29,12 @@
                     <li class="breadcrumb-item">
                         <a href="@Url.Action("Index", "Dashboard")"><i class="fa-solid fa-house"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">@ViewData["PageTitle"]</li>
+               @*  <li class="breadcrumb-item active" aria-current="page">@ViewData["PageTitle"] *@
+                <li class="breadcrumb-item active" aria-current="page">
+                        @ViewData["PageTitle"]   <i class="fa-solid fa-circle-info text-white ms-2"
+                                                data-bs-toggle="tooltip"
+                                                title="This page lets you view, edit, or delete your transactions. You can also add a new one with the green button on the right."></i>
+                </li>
                 </ol>
             </nav>
             <a href="@ViewData["PageActionUrl"]" class="btn btn-success mb-4">

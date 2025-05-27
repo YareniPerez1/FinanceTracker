@@ -368,10 +368,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
+/*desgine form pdf download button*/
 
+.btn-outline-white {
+    color: white;
+    border: 1px solid white;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
 
-
-
+    .btn-outline-white:hover,
+    .btn-outline-white:focus {
+        background-color: white;
+        color: black;
+        text-decoration: none;
+    }
 
 
 

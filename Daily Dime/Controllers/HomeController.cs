@@ -43,5 +43,15 @@ namespace Daily_Dime.Controllers
         {
             return View();
         }
+
+        public IActionResult Help()
+        {
+            return View();
+        }
+        public IActionResult HelpContent()
+        {
+            return PartialView("_HelpContent");
+        }
+
     }
 }
