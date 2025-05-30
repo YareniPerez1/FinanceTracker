@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  @*   <title>Daily Dime</title> *@
+
     <script type="importmap"></script>
     <link rel="icon" type="image/x-icon" href="~/logo.ico" />
 
@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
    
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -48,12 +50,7 @@
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                           @*  <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li> *@
+                       
                         </ul>
                         <partial name="_LoginPartial" />
                     </div>
@@ -76,13 +73,13 @@
             const toggleButton = document.getElementById('sidebarToggle');
             const sidebar = document.querySelector('.sidebar-fixed');
             const mainContent = document.querySelector('.main-content');
-            const sidebarLabels = document.querySelectorAll('.sidebar-label'); // <-- Select all labels
+            const sidebarLabels = document.querySelectorAll('.sidebar-label'); 
 
             toggleButton.addEventListener('click', function () {
                 sidebar.classList.toggle('sidebar-collapsed');
                 mainContent.classList.toggle('main-content-collapsed');
 
-                // Hide or show the labels based on sidebar state
+               
                 sidebarLabels.forEach(label => {
                     if (sidebar.classList.contains('sidebar-collapsed')) {
                         label.style.display = 'none'; // Hide labels
@@ -152,7 +149,7 @@
 
 <div class="container">
     <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3 mt-5 ">
             <li class="nav-item"><a class="nav-link px-2 text-white" asp-controller="Home" asp-action="About">About</a></li>
             <li class="nav-item"><a class="nav-link px-2 text-white" asp-controller="Home" asp-action="Contact">Contact</a></li>
             <li class="nav-item"><a class="nav-link px-2 text-white" asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>

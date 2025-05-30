@@ -4,9 +4,6 @@
     ViewData["PageTitle"] = Model.CategoryId == 0 ? "Create a new category" : "Edit category";
 }
 
-@* <h1>Create</h1> *@
-@* <h1>@(Model.CategoryId == 0 ? "Create Category" : "Edit Category")</h1> *@
-
 
 <nav style="--bs-breadcrumb-divider: '>'; --bs-breadcrumb-divider-color: white;" aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -15,9 +12,6 @@
         <li class="breadcrumb-item active " aria-current="page">Add/Edit</li>
     </ol>
 </nav>
-
-<!-- Your existing content here -->
-
 
 
 <div class="row">
@@ -52,7 +46,12 @@
                 <!-- Icon -->
                 <div class="mb-3">
                     <label asp-for="Icon" class="control-label"></label>
-                    <input asp-for="Icon" class="form-control" placeholder="Enter icon class..." />
+                    <input asp-for="Icon" class="form-control" placeholder="Enter icon or emoji..." />
+                    <small class="form-text text-white">
+                        To use an emoji as your icon, click in the field and press
+                        <strong>Windows + .</strong> (on Windows) or
+                        <strong>Control + Command + Space</strong> (on Mac).
+                    </small>
                     <span asp-validation-for="Icon" class="text-danger"></span>
                 </div>
 
@@ -67,20 +66,16 @@
     <!-- Right Side: Icon Block -->
     <div class="col-md-5">
         <div class="widget h-100 d-flex justify-content-center align-items-center">
-          @*   <i class="fa-solid fa-shapes fa-2xl text-white"></i> *@
+         
             <i class="fa-solid fa-coins fa-2xl text-white"></i>
         </div>
     </div>
 </div>
 
   
-@* <div>
-    <a asp-action="Index">Back to List</a>
-</div> *@
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
-
-@* value="@Model.Type" *@ 

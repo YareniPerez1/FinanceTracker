@@ -11,7 +11,7 @@ namespace FTDataAccess.Interface
     {
         Task<IEnumerable<Category>> GetAllAsync(string UserId);
         Task<Category?> GetByIdAsync(int id, string userId);
-        Task AddAsync(Category category, string userId); // Add userId parameter
+        Task AddAsync(Category category, string userId); 
         Task UpdateAsync(Category category, string userId);
         Task DeleteAsync(int id, string userId);
         Task<bool> ExistsAsync(int id, string userId);

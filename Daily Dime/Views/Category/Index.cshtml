@@ -1,5 +1,4 @@
-﻿@* @model IEnumerable<FTDataAccess.Models.Category> *@
-@* @model IEnumerable<FTDataAccess.Models.PagedCategoryViewModel>*@
+﻿
     @model FTDataAccess.Models.PagedCategoryViewModel
 
 @{
@@ -85,6 +84,7 @@
                     }
                 </ul>
             </nav>
+           
 
         </div>
     </div>
@@ -132,100 +132,3 @@
     </script>
 }
 
-
-
-
-
-
-@* <h1>Index</h1>
-
-<p>
-    <a asp-action="AddOrEdit">Create New</a>
-</p> *@
-
-@* Works but icon not the same width as rows *@
-
-@* < div class="row"> *@
-<!-- Left: Table -->
-@*    <div class="col-md-7">
-        <table class="table clean-header table-borderless w-100" style="table-layout: fixed;">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Title)</th> *@
-@*    <th>@Html.DisplayNameFor(model => model.Icon)</th> *@
-@*   <th>@Html.DisplayNameFor(model => model.Type)</th>
-                    <th style="width: 200px;">Actions</th>
-                  @*   <th></th> *@
-@*      </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.TitleAndIcon)</td>
-                    @*     <td>@Html.DisplayFor(modelItem => item.Icon)</td> *@
-@*   <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                        <td>
-                            <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div> *@ 
-
-    <!-- Right: Icon Block -->
-@*  <div class="col-md-5">
-        <div class="widget h-100 d-flex justify-content-center align-items-center" style="background-color: #212b36; height: 100%;">
-          @*   <i class="fa-solid fa-shapes fa-2xl text-white"></i> *@
-@*     <i class="fa-solid fa-coins fa-2xl text-white"></i>
-        </div>
-    </div>
-</div>  
- *@
-@* work end here  ---------------------------------------- *@
-
-@*   <div class="row d-flex align-items-stretch">
-    <!-- Left: Table -->
-    <div class="col-md-7 d-flex">
-        <div class="w-100">
-            <table class="table clean-header table-borderless w-100 h-100" style="table-layout: fixed;">
-                <thead>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Title)</th>
-                        <th>@Html.DisplayNameFor(model => model.Type)</th>
-                        <th style="width: 200px;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                            <tr>
-                                <td>@Html.DisplayFor(modelItem => item.TitleAndIcon)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Type)</td>
-                                <td>
-                                    <a asp-action="AddOrEdit" asp-route-id="@item.CategoryId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-                                </td>
-                            </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Right: Icon Block -->
-    <div class="col-md-5 d-flex">
-        <div class="widget w-100 d-flex justify-content-center align-items-center" style="background-color: #212b36;">
-            <i class="fa-solid fa-coins fa-2xl text-white"></i>
-        </div>
-    </div>
-</div>
- *@
-
-@*   -----------------------------------   end here ------------------------------------------ *@
-
-@*   @model PagedCategoryListViewModel *@

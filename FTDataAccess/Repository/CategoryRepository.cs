@@ -26,11 +26,7 @@ namespace FTDataAccess.Repository
             await _context.SaveChangesAsync();
         }
 
-        //public async Task<IEnumerable<Category>> GetAllAsync()
-        //{
-        //    return await _context.Categories.ToListAsync();
-        //}
-
+      
         public async Task<IEnumerable<Category>> GetAllAsync(string userId)
         {
             return await _context.Categories
@@ -79,7 +75,7 @@ namespace FTDataAccess.Repository
 
         public async Task DeleteAsync(int id, string userId)
         {
-            //var category = await _context.Categories.FindAsync(id);
+            
             var category = await _context.Categories
         .FirstOrDefaultAsync(c => c.CategoryId == id && c.UserId == userId);
 

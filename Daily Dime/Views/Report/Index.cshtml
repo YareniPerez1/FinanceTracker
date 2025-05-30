@@ -12,9 +12,7 @@
                               title="This is your income activity report for the selected date range.">
             </i>
         </h2>
-       @*  <a class="btn btn-outline-secondary" asp-action="DownloadPdf">
-            <i class="fa-solid fa-file-pdf"></i> Download PDF
-        </a> *@
+   
         <a class="btn btn-outline-white"
            asp-action="DownloadPdf"
            asp-route-startDate="@Model.StartDate.ToString("yyyy-MM-dd")"
@@ -24,6 +22,16 @@
     </div>
 
     <!-- Date Filter Form -->
+    @if (ViewBag.DateRangeNotice != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <span class="text-danger">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                @ViewBag.DateRangeNotice
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
     <form method="get" asp-action="Index" class="row g-3 mb-4">
         <div class="col-md-4">
             <label for="startDate" class="form-label">
@@ -56,7 +64,7 @@
         <div class="card-body">
             <h5 class="card-title text-white">Expenses by Category</h5>
             <div style="height: 400px;">
-                <!-- Fixed height -->
+            
                 <canvas id="barChart"></canvas>
             </div>
         </div>
@@ -127,7 +135,7 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: true, // fix stretching issue
+                maintainAspectRatio: true, 
                 layout: {
                     padding: 10
                 },

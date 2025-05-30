@@ -1,4 +1,4 @@
-﻿@* @model IEnumerable<FTDataAccess.Models.Transaction> *@
+﻿
    @model FTDataAccess.Models.PagedTransactionViewModel
 
 @{
@@ -8,12 +8,7 @@
     var firstItem = Model.Transactions.FirstOrDefault();
 }
 
-@* <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Dashboard")"><i class="fa-solid fa-house"></i></a></li>
-        <li class="breadcrumb-item active" aria-current="page">transaction</li>
-    </ol>
-</nav> *@
+
 
 
 
@@ -29,7 +24,7 @@
                     <li class="breadcrumb-item">
                         <a href="@Url.Action("Index", "Dashboard")"><i class="fa-solid fa-house"></i></a>
                     </li>
-               @*  <li class="breadcrumb-item active" aria-current="page">@ViewData["PageTitle"] *@
+               
                 <li class="breadcrumb-item active" aria-current="page">
                         @ViewData["PageTitle"]   <i class="fa-solid fa-circle-info text-white ms-2"
                                                 data-bs-toggle="tooltip"
@@ -52,32 +47,25 @@
                         <th>Note</th>
                         <th>Date</th>
                         <th style="width: 200px;">Actions</th>
-                       @*  <th>@Html.DisplayNameFor(model => model.Transactions.First().Category.Title)</th>
-                        <th>@Html.DisplayNameFor(model => model.Transactions.First().Amount)</th>
-                        <th>@Html.DisplayNameFor(model => model.Transactions.First().Note)</th>
-                        <th>@Html.DisplayNameFor(model => model.Transactions.First().Date)</th>
-                        <th style="width: 200px;">Actions</th> *@
+                      
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.Transactions)
                     {
                         <tr>
-                           @*  <td>@Html.DisplayFor(modelItem => item.Category.Title)</td> *@
+                         
 
                             <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;" title="@item.Category?.Title">@Html.DisplayFor(modelItem => item.Category.TitleAndIcon)</td>
                             <td>@Html.DisplayFor(modelItem => item.FormattedAmount)</td>
                             <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;" title="@item.Note">@Html.DisplayFor(modelItem => item.Note)</td>
                             <td>@item.Date.ToShortDateString()</td>
-                           @*  <td>@Html.DisplayFor(modelItem => item.Date.ToShortDateString())</td> *@
+                          
                             <td>
                                 <a asp-action="AddOrEdit" asp-route-id="@item.TransactionId" title="Edit" class="text-success text-decoration-none">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                              @*   &nbsp;
-                                <a asp-action="Details" asp-route-id="@item.TransactionId" title="Details" class="text-info text-decoration-none">
-                                    <i class="fa fa-info-circle"></i>
-                                </a> *@
+                             
                                 &nbsp;
                                 <button type="button" class="btn btn-link p-0 m-0 text-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-transaction-id="@item.TransactionId">
                                     <i class="fa fa-trash-alt"></i>

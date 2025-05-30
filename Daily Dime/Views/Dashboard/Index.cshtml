@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["isDashboard"] = true;
-    // var recentTransactions = ViewBag.RecentTransactions as List<FTDataAccess.Models.Transaction>;
+    
 }
 @using System.Text.Json
 @using Newtonsoft.Json
@@ -67,8 +67,16 @@
 </div>
 
 <!--filter by date section -->
-
-
+@if (ViewBag.DateRangeNotice != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <span class="text-danger">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+            @ViewBag.DateRangeNotice
+        </span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <form method="get" asp-action="Index" class="mb-4">
     <div class="d-flex justify-content-center gap-3 flex-wrap">
@@ -154,29 +162,9 @@
                             <tr>
                                 <td>@tx.Category.TitleAndIcon</td>
                                 <td>@tx.Date.ToString("MMM-dd-yy")</td>
-                                @* <td>@((DateTime)tx.Date).ToString("MMM-dd-yy")</td> *@
-
-                              @*   <td>
-                                    @if (tx.Date != null)
-                                    {
-                                        @tx.Date.ToString("MMM-dd-yy")
-                                    }
-                                    else
-                                    {
-                                        <span>N/A</span>
-                                    }
-                                </td> *@
+                            
                                 <td class="text-end">@tx.FormattedAmount</td>
-                              @*   <td class="text-end">
-                                    @if (tx.FormattedAmount != null)
-                                    {
-                                        @tx.FormattedAmount
-                                    }
-                                    else
-                                    {
-                                        <span>N/A</span>
-                                    }
-                                </td> *@
+                              
                             </tr>
                         }
                     </tbody>
@@ -184,13 +172,7 @@
             </div>
         </div>
     </div>
-@*     <div class="col-md-6">
-        <div class="widget h-100">
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <span><i class="fa-solid fa-plus fa-2xl"></i> Widget</span>
-            </div>
-        </div>
-    </div>*@
+
 
  
 <div class="col-md-6">

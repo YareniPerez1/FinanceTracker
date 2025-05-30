@@ -25,6 +25,17 @@ namespace Daily_Dime.Controllers
             var start = startDate ?? DateTime.Today.AddDays(-29);
             var end = endDate ?? DateTime.Today;
 
+            // Swap if start is after end
+            if (start > end)
+            {
+                var temp = start;
+                start = end;
+                end = temp;
+
+                ViewBag.DateRangeNotice = "You entered an invalid date range (start was after end). We've corrected it to show results from " +
+                           start.ToString("MMM dd, yyyy") + " to " + end.ToString("MMM dd, yyyy") + ".";
+            }
+
             var transactions = (await _transactionRepository.GetAllAsync(userId))
                 .Where(t => t.Date >= start && t.Date <= end)
                 .ToList();

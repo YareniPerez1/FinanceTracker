@@ -74,7 +74,7 @@ namespace Daily_Dime.Controllers
             // Editing existing transaction
             var transaction = await _transactionRepository.GetByIdAsync(id.Value, userId);
             if (transaction == null )
-                //|| transaction.UserId != userId)
+             
                 return Forbid();
 
 
@@ -152,7 +152,7 @@ namespace Daily_Dime.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var transaction = await _transactionRepository.GetByIdAsync(id, userId);
             if (transaction == null )
-                //|| transaction.UserId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+         
             {
                 return Forbid();
             }
@@ -162,9 +162,6 @@ namespace Daily_Dime.Controllers
         }
 
 
-        //private bool TransactionExists(int id)
-        //{
-        //    return _context.Transactions.Any(e => e.TransactionId == id);
-        //}
+       
     }
 }
